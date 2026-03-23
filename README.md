@@ -10,6 +10,7 @@ Unlike traditional voice assistants that rely only on verbal commands, AURA allo
 ---
 
 ## Demo Video
+
 <div style="text-align: center;">
 
 ![AURA Demo](demo_preview.gif)
