@@ -10,12 +10,15 @@ Unlike traditional voice assistants that rely only on verbal commands, AURA allo
 ---
 
 ## Demo Video
+<div style="text-align: center;">
 
 ![AURA Demo](demo_preview.gif)
 
 [📺 Watch Full Demo on YouTube](https://youtu.be/sjE98X0MNao)
 
 *A demonstration of AURA's voice-first and vision-assisted workflow in action.*
+
+</div>
 
 ---
 
