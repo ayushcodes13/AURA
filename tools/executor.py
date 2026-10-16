@@ -1,7 +1,7 @@
+import os
+
 from tools.vision import capture_photo
 from llm.provider import LLMProvider
-
-provider = LLMProvider()
 
 class AuraToolExecutor:
     """
@@ -9,7 +9,7 @@ class AuraToolExecutor:
     """
 
     def __init__(self):
-        pass
+        self.provider = LLMProvider()
 
     # --------------------------
     # NORMAL TEXT HANDLING
@@ -43,7 +43,7 @@ class AuraToolExecutor:
 
         final_text = ""
 
-        for chunk in provider.generate_text_stream(system_prompt, user_query):
+        for chunk in self.provider.generate_text_stream(system_prompt, user_query):
             print(chunk, end="", flush=True)
             final_text += chunk
 
@@ -64,8 +64,13 @@ class AuraToolExecutor:
         if tool_name == "capture_photo":
             img_path = capture_photo()
 
-            final_text = provider.generate_vision(user_query, img_path)
-
-            return {"type": "text", "text": final_text}
+            try:
+                final_text = self.provider.generate_vision(user_query, img_path)
+                return {"type": "text", "text": final_text}
+            finally:
+                try:
+                    os.remove(img_path)
+                except FileNotFoundError:
+                    pass
 
         return {"type": "text", "text": "I couldn't complete that request."}

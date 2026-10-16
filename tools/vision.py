@@ -1,5 +1,8 @@
 import cv2
-import time
+import os
+import platform
+from pathlib import Path
+import tempfile
 
 def capture_photo():
     """
@@ -7,12 +10,19 @@ def capture_photo():
     No preview. No UI. No async issues.
     """
 
-    save_path = f"/tmp/aura_photo_{int(time.time())}.jpg"
+    runtime_dir = Path(__file__).resolve().parents[1] / ".runtime"
+    runtime_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
+    fd, save_path = tempfile.mkstemp(prefix="aura_photo_", suffix=".jpg", dir=runtime_dir)
+    os.close(fd)
 
     for cam_index in [0, 1, 2, 3]:
-        cap = cv2.VideoCapture(cam_index, cv2.CAP_AVFOUNDATION)
+        if platform.system() == "Darwin":
+            cap = cv2.VideoCapture(cam_index, cv2.CAP_AVFOUNDATION)
+        else:
+            cap = cv2.VideoCapture(cam_index)
 
         if not cap.isOpened():
+            cap.release()
             continue
 
         for _ in range(5):
@@ -22,7 +32,11 @@ def capture_photo():
         cap.release()
 
         if ret and frame is not None:
-            cv2.imwrite(save_path, frame)
-            return save_path
+            if cv2.imwrite(save_path, frame):
+                return save_path
 
+    try:
+        os.remove(save_path)
+    except FileNotFoundError:
+        pass
     raise RuntimeError("No usable camera found.")

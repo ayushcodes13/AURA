@@ -9,9 +9,9 @@ VISION_KEYWORDS = [
     "around me", "here", "this place"
 ]
 
-provider = LLMProvider()
 class AuraIntentRouter:
     def __init__(self):
+        self.provider = LLMProvider()
         self.router_prompt = (
             "You are AURA’s intent router.\n\n"
 
@@ -47,4 +47,4 @@ class AuraIntentRouter:
                     "tool_name": "capture_photo",
                     "args": {}
                 }
-        return provider.classify_intent(self.router_prompt, text)
+        return self.provider.classify_intent(self.router_prompt, text)
