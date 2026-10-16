@@ -140,6 +140,8 @@ celerybeat.pid
 # Environments
 .env
 .envrc
+.env.*
+!.env.example
 .venv
 env/
 venv/
@@ -214,3 +216,9 @@ config/keys.env
 wakeword/*.ppn
 
 config/google_tts_key.json
+
+# Runtime data and macOS AppleDouble metadata on FAT/external volumes
+.runtime/
+._*
+**/._*
+**/._*/

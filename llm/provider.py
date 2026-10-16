@@ -5,13 +5,14 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-load_dotenv()
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(PROJECT_ROOT, "config", ".env"))
 
 class LLMProvider:
     def __init__(self):
         api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
-            raise RuntimeError("GROQ_API_KEY not found in environment")
+            raise RuntimeError("GROQ_API_KEY is missing. Set it in config/.env or the environment.")
 
         self.client = Groq(api_key=api_key)
         self.text_model = "llama-3.3-70b-versatile"  
