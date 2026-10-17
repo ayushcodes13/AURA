@@ -1,4 +1,4 @@
-from aura_intent import AuraIntentRouter
+from intent.aura_intent import AuraIntentRouter
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
@@ -33,19 +33,19 @@ def test_query(q):
     pretty_output(q, out)
 
 
-# -------------------------
-# Run test cases
-# -------------------------
-test_query("Aura show me what you see.")
-test_query("Is it hot in here?")
-test_query("Who made you?")
+def main():
+    for query in (
+        "Aura show me what you see.",
+        "Is it hot in here?",
+        "Who made you?",
+        "Take a picture.",
+        "What is in front of me right now?",
+        "What's the room temperature?",
+        "Check the sensor reading.",
+        "Tell me a joke.",
+    ):
+        test_query(query)
 
 
-test_query("Take a picture.")
-test_query("What is in front of me right now?")
-
-test_query("What's the room temperature?")
-
-test_query("Check the sensor reading.")
-
-test_query("Tell me a joke.")
+if __name__ == "__main__":
+    main()
