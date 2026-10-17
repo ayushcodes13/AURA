@@ -64,7 +64,7 @@ This is an exploratory use case, not an evaluated outcome.
 
 AURA attempts this interaction sequence:
 
-1. 🎤 User activates AURA using a wakeword (once per session)
+1. 🎤 User activates AURA with the wakeword
 2. 📝 Speech is captured and transcribed in real time
 3. 🤖 The system determines whether visual context is required
 4. 📷 If needed, an image is captured using a camera
@@ -80,7 +80,7 @@ The implementation currently processes one request at a time and waits for a new
 - ⚡ Real-time speech-to-text processing
 - 👁️ Vision-assisted understanding when required
 - 🗣️ Spoken responses optimized for clarity
-- 🔄 Session-based interaction flow
+- 🔄 One utterance per wakeword activation
 - 🧩 Modular architecture for future expansion
 
 ---
@@ -89,7 +89,7 @@ The implementation currently processes one request at a time and waits for a new
 
 This repository contains an experimental, hardware-dependent prototype. The full voice/camera workflow has not been verified on a clean machine as part of this repository review. It requires working microphone, camera, and speaker devices; service credentials; and a platform-specific Picovoice keyword model that is not included. Model answers can be wrong, including descriptions of objects, labels, or medicines. Do not rely on AURA for medication decisions, emergencies, diagnosis, or other safety-critical tasks.
 
-The wakeword is processed locally by Porcupine. Speech is streamed to Deepgram for transcription; the transcript is sent to Groq for intent routing and text responses. If the request invokes the camera path, a captured image is sent to Groq for vision processing. Spoken output uses Edge TTS. Review each provider's current privacy and retention terms before use, and do not capture or submit another person's image or speech without their permission. Captured image files are held in the ignored `.runtime/` folder only while the vision request runs and are then deleted when the request completes or fails.
+The wakeword is processed locally by Porcupine. Speech is streamed to Deepgram for transcription; the transcript is sent to Groq for intent routing and text responses. If the request invokes the camera path, a captured image is sent to Groq for vision processing without a preview screen. Review each provider's current privacy and retention terms before use, and do not capture or submit another person's image or speech without their permission. Captured image files are held in the ignored `.runtime/` folder only while the vision request runs and are then deleted when the request completes or fails.
 
 ---
 
