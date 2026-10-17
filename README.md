@@ -14,7 +14,7 @@
 
 ## Project presentation
 
-A static project presentation can be hosted separately from the local prototype. The presentation is informational only; it does not provide the device-backed assistant. The actual prototype runs locally on a configured machine.
+The static project presentation is deployed at [aura.devayushrout.me](https://aura.devayushrout.me). It is informational only and does not provide the device-backed assistant. The actual prototype runs locally on a configured machine.
 
 ![Existing AURA project demo](demo_preview.gif)
 
@@ -113,7 +113,7 @@ These tests cover phrases that should and should not directly trigger the camera
 
 ## Deployment and privacy boundaries
 
-The device-backed CLI is designed to run locally. Vercel cannot provide its microphone, camera, or speaker access, and this project has no serverless application runtime. A static project presentation may be hosted separately, but must remain clearly distinct from the actual local prototype.
+The device-backed CLI is designed to run locally. Vercel cannot provide its microphone, camera, or speaker access, and this project has no serverless application runtime. The static project presentation is hosted at [aura.devayushrout.me](https://aura.devayushrout.me), but remains clearly distinct from the actual local prototype.
 
 The application sends speech audio to Deepgram and transcripts to Groq; a visual request also sends a still image to Groq. AURA is a prototype, not a privacy-preserving or clinically validated product. Do not use it for high-stakes decisions.
 
