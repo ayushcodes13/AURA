@@ -224,3 +224,5 @@ config/google_tts_key.json
 **/._*
 **/._*/
 !/site/**
+/site/._*
+/site/**/._*
