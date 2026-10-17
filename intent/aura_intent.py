@@ -1,13 +1,6 @@
 
 from llm.provider import LLMProvider
-
-VISION_KEYWORDS = [
-    "see", "look", "show", "view",
-    "picture", "photo", "image",
-    "camera", "front of me",
-    "what do you see", "what is in front of me",
-    "around me", "here", "this place"
-]
+from intent.vision_request import is_explicit_vision_request
 
 class AuraIntentRouter:
     def __init__(self):
@@ -39,12 +32,6 @@ class AuraIntentRouter:
                 )
 
     def route(self, text: str):
-        text_l = text.lower()
-        for keyword in VISION_KEYWORDS:
-            if keyword in text_l:
-                return {
-                    "type": "tool_call",
-                    "tool_name": "capture_photo",
-                    "args": {}
-                }
+        if is_explicit_vision_request(text):
+            return {"type": "tool_call", "tool_name": "capture_photo", "args": {}}
         return self.provider.classify_intent(self.router_prompt, text)
