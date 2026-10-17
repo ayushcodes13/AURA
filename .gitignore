@@ -158,6 +158,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+!/site/
 
 # mypy
 .mypy_cache/
@@ -222,3 +223,6 @@ config/google_tts_key.json
 ._*
 **/._*
 **/._*/
+!/site/**
+/site/._*
+/site/**/._*
