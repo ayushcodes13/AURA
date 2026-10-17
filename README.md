@@ -168,6 +168,18 @@ AURA/
 
 ---
 
+## Tests
+
+Run the deterministic vision-request tests from the repository root:
+
+```bash
+python -m unittest discover -v
+```
+
+The interactive intent-router and text-to-speech demos live in `intent/demo_intent_router.py` and `tts/demo_tts.py`; they are not automated tests and may call external providers or audio devices when run.
+
+---
+
 ## Platform and deployment
 
 AURA depends on local microphone, camera, and speaker devices and vendor-specific audio/runtime packages. It is intended to be run locally. A static or serverless Vercel deployment cannot provide this device access and is not a suitable deployment target for the current app.
